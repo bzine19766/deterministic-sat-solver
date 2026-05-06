@@ -7,6 +7,40 @@
 
 A **deterministic** local search SAT solver that challenges the 30-year assumption that randomness is essential for solving Boolean Satisfiability problems.
 
+> *"Randomness is not necessary for SAT solving – it only accelerates convergence."*
+
+## 📋 Table of Contents
+
+- [Key Results](#key-results)
+- [Complete Ablation Results](#complete-ablation-results)
+- [Quick Start (Google Colab)](#quick-start-google-colab)
+- [Local Installation](#local-installation)
+- [Ablation Study Results](#ablation-study-results)
+- [Benchmark Sources](#benchmark-sources)
+- [Repository Structure](#repository-structure)
+- [Citation](#citation)
+- [License](#license)
+
+## 🔬 Key Results
+
+| Metric | Value |
+|--------|-------|
+| **Success Rate** | 99.3% (6,484/6,530) |
+| **Median Runtime** | 0.05 seconds |
+| **Geometric Mean** | 0.108 seconds |
+| **Deterministic Only** | 99.2% (no mutations) |
+| **Portfolio Coverage** | 99.6% |
+
+## 📦 Complete Ablation Results  
+### What's Included:
+
+| File Type | Description |
+|-----------|-------------|
+| **`.log` files** | Complete execution logs with per-file results (SUCCESS/FAILED/TIMEOUT) |
+| **`.sat` files** | Solution files for successfully solved CNF instances |
+| **`.csv` files** | Summary statistics for all configurations |
+| **`.json` files** | Machine-readable results for further analysis |
+
 ## 🚀 Quick Start (Google Colab)
 
 The easiest way to run Nitro-Basin is using our pre-configured Colab notebook:
@@ -18,9 +52,8 @@ The easiest way to run Nitro-Basin is using our pre-configured Colab notebook:
 1. **Open the Colab notebook** using the link above
 2. **Mount Google Drive** when prompted (Cell 1)
 3. **Prepare your CNF files** in your Google Drive at:
-4. - Download benchmarks from [SATLIB](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
-- Place `.cnf` files in the `cnffiles` folder
-
+   - Download benchmarks from [SATLIB](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
+   - Place `.cnf` files in the `cnffiles` folder
 4. **Run Cell 2** – Copies CNF files to local RAM for maximum performance
 5. **Run Cell 3** – Compiles the C++ solver
 6. **Run Cell 4** – Runs ablation analysis on results
@@ -35,23 +68,7 @@ The easiest way to run Nitro-Basin is using our pre-configured Colab notebook:
 | **Ablation Analysis** | Complete configuration comparison matrix |
 | **Resume Capable** | Can resume interrupted ablation runs |
 
-## 📊 Ablation Study Results
-
-Run the Colab notebook to reproduce these results:
-
-| Configuration | Success | Mean Time | vs FULL |
-|---------------|---------|-----------|---------|
-| FULL (baseline) | 99.3% | 0.534s | — |
-| NO_TABU | 90.7% | 0.317s | -8.6% |
-| NO_CLAUSE_WEIGHTING | 94.6% | 0.248s | -4.7% |
-| NO_ADAPTIVE_MUTATION | 99.2% | 0.526s | -0.1% |
-| NO_MUTATION | 99.2% | 0.537s | -0.1% |
-| NO_LAST_CLAUSE | 99.3% | 0.372s | 0.0% |
-| NO_CYCLE_DETECTION | 99.3% | 0.271s | 0.0% |
-| NO_ANCHOR_LOCKING | 99.2% | — | -0.1% |
-| NO_FREQUENCY_BIAS | 99.3% | 0.433s | 0.0% |
-
-## 🔧 Local Installation (Alternative)
+## 🔧 Local Installation
 
 If you prefer to run locally:
 
@@ -60,8 +77,16 @@ If you prefer to run locally:
 git clone https://github.com/yourusername/deterministic-sat-solver.git
 cd deterministic-sat-solver
 
-# Compile
+# Compile with optimizations
 g++ -O3 -std=c++17 -o nitro-basin src/pagerank_sat_solver.cpp
 
-# Run on a single file
+# Run on a single CNF file
 ./nitro-basin input.cnf output.sat
+
+# Example output:
+# TIME:0.053
+# FLIPS:1234
+# MUTATIONS:0
+# RESULT:SUCCESS
+
+All ablation study results, including detailed logs and solution files, are available in the `results/` folder of this repository:
