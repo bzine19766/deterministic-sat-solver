@@ -89,4 +89,4 @@ g++ -O3 -std=c++17 -o nitro-basin src/pagerank_sat_solver.cpp
 # MUTATIONS:0
 # RESULT:SUCCESS
 
-All ablation study results, including detailed logs and solution files, are available in the `results/` folder of this repository:
+All ablation study results, including detailed logs and solution files, are available in the `ablation_results.zip of this repository:
