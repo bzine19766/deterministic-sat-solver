@@ -7,38 +7,37 @@
 
 A **deterministic** local search SAT solver that challenges the 30-year assumption that randomness is essential for solving Boolean Satisfiability problems.
 
-## 🔬 Key Results
+## 🚀 Quick Start (Google Colab)
 
-| Metric | Value |
-|--------|-------|
-| **Success Rate** | 99.3% (6,484/6,530) |
-| **Median Runtime** | 0.05 seconds |
-| **Geometric Mean** | 0.108 seconds |
-| **Deterministic Only** | 99.2% (no mutations) |
-| **Portfolio Coverage** | 99.6% |
+The easiest way to run Nitro-Basin is using our pre-configured Colab notebook:
 
-## 🏆 Revolutionary Finding
+**[🔗 Open in Google Colab](https://colab.research.google.com/drive/1VrEJf19LiVne1pP4TZoq3RRQwqBk-AbF?usp=sharing)**
 
-> *Randomness is not necessary for SAT solving – it only accelerates convergence.*
+### Step-by-Step Instructions:
 
-A purely deterministic configuration achieves **99.2% success** – statistically indistinguishable from stochastic variants (99.3%).
+1. **Open the Colab notebook** using the link above
+2. **Mount Google Drive** when prompted (Cell 1)
+3. **Prepare your CNF files** in your Google Drive at:
+4. - Download benchmarks from [SATLIB](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
+- Place `.cnf` files in the `cnffiles` folder
 
-## 📚 Benchmark Sources
+4. **Run Cell 2** – Copies CNF files to local RAM for maximum performance
+5. **Run Cell 3** – Compiles the C++ solver
+6. **Run Cell 4** – Runs ablation analysis on results
 
-All benchmarks used in this evaluation are publicly available from:
+### Features of the Colab Notebook:
 
-- **SATLIB** – [https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
-  - UF (Uniform Random 3-SAT)
-  - CBS (Controlled Balanced SAT)
-  - Flat (Graph Coloring)
-  - SW (Software Verification)
-  - AIS (Airline Industry Scheduling)
-  - QG (Quasi-Group Completion)
-  - Logistics (Planning)
-
-Total: **6,530 CNF instances** across 7 problem families.
+| Feature | Description |
+|---------|-------------|
+| **Auto-mount Drive** | Automatically connects to your Google Drive |
+| **RAM Caching** | Copies CNF files to local RAM for faster I/O |
+| **Progress Tracking** | Shows real-time copy progress with speed and ETA |
+| **Ablation Analysis** | Complete configuration comparison matrix |
+| **Resume Capable** | Can resume interrupted ablation runs |
 
 ## 📊 Ablation Study Results
+
+Run the Colab notebook to reproduce these results:
 
 | Configuration | Success | Mean Time | vs FULL |
 |---------------|---------|-----------|---------|
@@ -52,15 +51,17 @@ Total: **6,530 CNF instances** across 7 problem families.
 | NO_ANCHOR_LOCKING | 99.2% | — | -0.1% |
 | NO_FREQUENCY_BIAS | 99.3% | 0.433s | 0.0% |
 
-## 🚀 Building
+## 🔧 Local Installation (Alternative)
+
+If you prefer to run locally:
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/deterministic-sat-solver.git
 cd deterministic-sat-solver
 
-# Compile with optimizations
+# Compile
 g++ -O3 -std=c++17 -o nitro-basin src/pagerank_sat_solver.cpp
 
-# Or use the Makefile
-make
+# Run on a single file
+./nitro-basin input.cnf output.sat
