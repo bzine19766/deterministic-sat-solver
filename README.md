@@ -1,6 +1,3 @@
-# deterministic-sat-solver
-Deterministic SAT solver using PageRank-guided local search. Challenges 30-year assumption that randomness is essential. 99.3% success on 6,530 benchmarks. Ablation study shows deterministic-only achieves 99.2%.
-
 # Deterministic SAT Solver (Nitro-Basin)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -25,6 +22,21 @@ A **deterministic** local search SAT solver that challenges the 30-year assumpti
 > *Randomness is not necessary for SAT solving – it only accelerates convergence.*
 
 A purely deterministic configuration achieves **99.2% success** – statistically indistinguishable from stochastic variants (99.3%).
+
+## 📚 Benchmark Sources
+
+All benchmarks used in this evaluation are publicly available from:
+
+- **SATLIB** – [https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html)
+  - UF (Uniform Random 3-SAT)
+  - CBS (Controlled Balanced SAT)
+  - Flat (Graph Coloring)
+  - SW (Software Verification)
+  - AIS (Airline Industry Scheduling)
+  - QG (Quasi-Group Completion)
+  - Logistics (Planning)
+
+Total: **6,530 CNF instances** across 7 problem families.
 
 ## 📊 Ablation Study Results
 
